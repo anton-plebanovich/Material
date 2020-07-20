@@ -927,7 +927,7 @@ open class NavigationDrawerController: TransitionController {
   /// Shows the statusBar.
   fileprivate func showStatusBar() {
     Motion.async { [weak self] in
-      guard let v = Application.keyWindow else {
+      guard isViewLoaded, let v = view.window else {
         return
       }
       
@@ -948,7 +948,7 @@ open class NavigationDrawerController: TransitionController {
     }
     
     Motion.async { [weak self] in
-      guard let v = Application.keyWindow else {
+      guard isViewLoaded, let v = view.window else {
         return
       }
       
