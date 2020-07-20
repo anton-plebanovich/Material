@@ -927,15 +927,15 @@ open class NavigationDrawerController: TransitionController {
   /// Shows the statusBar.
   fileprivate func showStatusBar() {
     Motion.async { [weak self] in
-      guard self?.isViewLoaded, let v = self?.view.window else {
-        return
-      }
-      
-      v.windowLevel = UIWindow.Level.normal
-      
       guard let `self` = self else {
         return
       }
+      
+      guard self.isViewLoaded, let w = self.view.window else {
+        return
+      }
+      
+      w.windowLevel = UIWindow.Level.normal
       
       self.delegate?.navigationDrawerController?(navigationDrawerController: self, statusBar: false)
     }
@@ -948,15 +948,15 @@ open class NavigationDrawerController: TransitionController {
     }
     
     Motion.async { [weak self] in
-      guard self?.isViewLoaded, let v = self?.view.window else {
-        return
-      }
-      
-      v.windowLevel = UIWindow.Level.statusBar + 1
-      
       guard let `self` = self else {
         return
       }
+      
+      guard self.isViewLoaded == true, let w = self.view.window else {
+        return
+      }
+      
+      w.windowLevel = UIWindow.Level.statusBar + 1
       
       self.delegate?.navigationDrawerController?(navigationDrawerController: self, statusBar: true)
     }
